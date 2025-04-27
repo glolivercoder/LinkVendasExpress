@@ -15,12 +15,19 @@
 /* Aplicar tema padrão (verde) */
 body {
   font-family: 'Arial', sans-serif;
-  font-size: 18px;
+  font-size: 15px; /* Reduzido para melhor adaptação mobile */
   font-weight: 500;
   color: var(--text-color);
   background-color: var(--background-color);
   transition: all 0.3s ease;
 }
+
+@media (max-width: 500px) {
+  body {
+    font-size: 13px;
+  }
+}
+
 
 /* Aumentar tamanho das fontes e colocar em negrito */
 h1, h2, h3, h4, h5, h6 {
@@ -28,23 +35,40 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2.2rem; }
-h3 { font-size: 1.9rem; }
-h4 { font-size: 1.6rem; }
-h5 { font-size: 1.4rem; }
-h6 { font-size: 1.2rem; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.95rem; }
+
+@media (max-width: 500px) {
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.1rem; }
+  h4 { font-size: 1rem; }
+  h5 { font-size: 0.95rem; }
+  h6 { font-size: 0.9rem; }
+}
+
 
 p, span, div, li, a, button, input, select, textarea {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
+
+@media (max-width: 500px) {
+  p, span, div, li, a, button, input, select, textarea {
+    font-size: 0.95rem;
+  }
+}
+
 
 /* Botões */
 .btn, button {
   font-weight: 700;
-  font-size: 1.1rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -52,6 +76,15 @@ p, span, div, li, a, button, input, select, textarea {
   border: none;
   outline: none;
 }
+
+@media (max-width: 500px) {
+  .btn, button {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+  }
+}
+
 
 .btn-primary, .btn-success {
   background-color: var(--primary-color);
@@ -85,17 +118,26 @@ p, span, div, li, a, button, input, select, textarea {
   background: var(--primary-color, #1976d2);
   color: #fff;
   font-weight: 700;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
-  border: 2.5px solid transparent;
+  padding: 0.5rem 0.7rem;
+  border-radius: 7px;
+  margin-bottom: 0.3rem;
+  border: 2px solid transparent;
   cursor: pointer;
-  box-shadow: 0 4px 0 0 #181c23, 0 8px 24px 0 #0008;
+  box-shadow: 0 2px 0 0 #181c23, 0 4px 12px 0 #0008;
   transition: all 0.2s cubic-bezier(.4,2,.6,1);
   position: relative;
-  text-shadow: 0 2px 6px #000b;
-  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px #000b;
+  letter-spacing: 0.4px;
 }
+
+@media (max-width: 500px) {
+  .category-item {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 5px;
+  }
+}
+
 
 .category-item.selected, .category-item:hover {
   background: var(--primary-color, #1976d2);

@@ -1,4 +1,4 @@
-package com.example.app;
+package com.suaempresa.linkvendasexpress;
 
 import com.getcapacitor.BridgeActivity;
 

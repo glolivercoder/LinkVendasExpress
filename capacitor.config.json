@@ -1,6 +1,6 @@
 {
-  "appId": "com.vendastok.app",
-  "appName": "VendaStok",
+  "appId": "com.suaempresa.linkvendasexpress",
+  "appName": "LinkVendasExpress",
   "webDir": "dist",
   "server": {
     "androidScheme": "https"

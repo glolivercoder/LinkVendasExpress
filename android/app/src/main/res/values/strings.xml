@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">LinkVendas Fast</string>
-    <string name="title_activity_main">LinkVendas Fast</string>
-    <string name="package_name">com.example.app</string>
-    <string name="custom_url_scheme">com.example.app</string>
+    <string name="app_name">LinkVendasExpress</string>
+    <string name="title_activity_main">LinkVendasExpress</string>
+    <string name="package_name">com.suaempresa.linkvendasexpress</string>
+    <string name="custom_url_scheme">com.suaempresa.linkvendasexpress</string>
 </resources>

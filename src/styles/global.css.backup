@@ -1,0 +1,29 @@
+/*
+Backup do CSS global antes de ajustes de responsividade para telas de 6,5".
+*/
+
+/* Estilos globais para o aplicativo */
+
+/* Importar os temas */
+@import '../themes/theme-green.css';
+@import '../themes/theme-blue.css';
+@import '../themes/theme-purple.css';
+
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Aplicar tema padrão (verde) */
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: all 0.3s ease;
+}
+
+/* ...restante do arquivo copiado... */
