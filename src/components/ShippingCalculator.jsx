@@ -573,6 +573,50 @@ const ShippingCalculator = ({ preselectedClient, preselectedProduct }) => {
                       <Camera />
                     </button>
                     <MagicWandScanButton onProductDataDetected={fillProductData} />
+                    <button
+                      className="btn btn-buscar"
+                      onClick={() => {
+                        if (sku) {
+                          setIsFetchingProduct(true);
+                          fetchProductBySku(sku)
+                            .then(product => {
+                              if (product) {
+                                fillProductData(product);
+                                toast({
+                                  title: "Produto encontrado",
+                                  description: `Dados do produto ${product.name || product.description || sku} preenchidos automaticamente.`,
+                                });
+                              } else {
+                                toast({
+                                  title: "Produto não encontrado",
+                                  description: `Nenhum produto encontrado com o código ${sku}.`,
+                                  variant: "destructive",
+                                });
+                              }
+                            })
+                            .catch(error => {
+                              console.error('Erro ao buscar produto:', error);
+                              toast({
+                                title: "Erro",
+                                description: "Ocorreu um erro ao buscar o produto. Tente novamente.",
+                                variant: "destructive",
+                              });
+                            })
+                            .finally(() => {
+                              setIsFetchingProduct(false);
+                            });
+                        } else {
+                          toast({
+                            title: "Código não informado",
+                            description: "Digite um código SKU, NCM ou GTIN para buscar.",
+                            variant: "destructive",
+                          });
+                        }
+                      }}
+                      disabled={!sku || isFetchingProduct}
+                    >
+                      {isFetchingProduct ? "Buscando..." : "BUSCAR"}
+                    </button>
                   </div>
                 </div>
               </div>

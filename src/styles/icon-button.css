@@ -39,3 +39,31 @@
 .input-with-button input {
   flex: 1;
 }
+
+.btn-buscar {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-buscar:hover {
+  background-color: #5649c0;
+}
+
+.btn-buscar:active {
+  background-color: #4a3db3;
+}
+
+.btn-buscar:disabled {
+  background-color: #a29bda;
+  cursor: not-allowed;
+}
