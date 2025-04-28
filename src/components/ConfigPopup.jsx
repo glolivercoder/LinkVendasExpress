@@ -39,7 +39,7 @@ const ConfigPopup = ({
           <EnhancedBackupConfig onClose={() => setShowEnhancedBackup(false)} />
         ) : (
           <>
-            <div className="popup-body">
+            <div className="popup-body configuracoes-scrollable">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold">Configurações de Backup</h3>
                 <button
