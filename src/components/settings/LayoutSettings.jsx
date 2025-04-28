@@ -147,7 +147,7 @@ const LayoutSettings = () => {
   };
 
   return (
-    <div className="p-3 bg-white rounded-lg shadow max-h-[500px] overflow-y-auto text-sm">
+    <div className="p-3 bg-white rounded-lg shadow configuracoes-scrollable text-sm">
       {/* Dropdowns para fontes e botões */}
       <div className="mb-4">
         <FontAndButtonSettingsDropdown

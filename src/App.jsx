@@ -450,17 +450,7 @@ function AppContent() {
     }
   }, [salesData]);
 
-  // Função para remover vendas de uma data específica
-  const removeVendasPorData = (dataFormatoBR) => {
-    // Filtrar as vendas, mantendo apenas as que NÃO são da data especificada
-    const vendasFiltradas = salesData.filter(venda => venda.date !== dataFormatoBR);
-
-    // Atualizar o estado com as vendas filtradas
-    setSalesData(vendasFiltradas);
-
-    // Retornar a quantidade de vendas removidas
-    return salesData.length - vendasFiltradas.length;
-  };
+  // A função para remover vendas de uma data específica foi removida
 
   // Salvar configurações de alerta de estoque mínimo
   useEffect(() => {
@@ -490,18 +480,7 @@ function AppContent() {
     console.log("Data atual BR:", currentDateBR);
   }, []);
 
-  // Efeito para zerar as vendas de hoje (executado apenas uma vez)
-  useEffect(() => {
-    // Definir a data atual no formato brasileiro
-    const currentDateISO = getCurrentDateISO();
-    const currentDateBR = formatDateToBrazilian(currentDateISO);
-
-    // Zerar as vendas de hoje para testar a correção do relatório
-    const vendasRemovidas = removeVendasPorData(currentDateBR);
-    console.log(`Vendas de hoje (${currentDateBR}) removidas: ${vendasRemovidas}`);
-    alert(`${vendasRemovidas} vendas de hoje (${currentDateBR}) foram removidas do relatório.`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // O efeito que removia as vendas de hoje foi removido
 
   const handleClientSearch = async (query) => {
     if (query.trim() === '') {

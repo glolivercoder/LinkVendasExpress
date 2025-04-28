@@ -129,18 +129,28 @@ p, span, div, li, a, button, input, select, textarea {
   max-height: 60vh;
   overflow-y: auto;
   padding-right: 6px;
+  overscroll-behavior: contain; /* Impede que o scroll afete o elemento pai */
+  -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos touch */
+  position: relative; /* Garante que o elemento tenha um contexto de posicionamento próprio */
+  z-index: 10; /* Garante que fique acima de outros elementos */
 }
 
 /* Estilização da barra de rolagem para melhor usabilidade mobile */
 .configuracoes-scrollable::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   background: #e0e0e0;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .configuracoes-scrollable::-webkit-scrollbar-thumb {
   background: #bdbdbd;
-  border-radius: 3px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
 }
+.configuracoes-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* Estilos para seções expansíveis nas configurações foram movidos para popup.css */
 
 .category-item {
   background: var(--primary-color, #1976d2);
