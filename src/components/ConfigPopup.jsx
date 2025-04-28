@@ -25,6 +25,15 @@ const ConfigPopup = ({
     setShowConfigPopup(false);
   };
 
+  // Bloquear scroll do body principal quando o popup está aberto
+  if (typeof window !== 'undefined') {
+    if (showConfigPopup) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
   if (!showConfigPopup) return null;
 
   return (
@@ -38,8 +47,9 @@ const ConfigPopup = ({
         {showEnhancedBackup ? (
           <EnhancedBackupConfig onClose={() => setShowEnhancedBackup(false)} />
         ) : (
-          <>
-            <div className="popup-body configuracoes-scrollable">
+          <div className="popup-body" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+            <details open style={{ marginBottom: '1rem', border: '1px solid #e5e7eb', borderRadius: 6, padding: 12, background: '#f9fafb' }}>
+              <summary style={{ fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Backup</summary>
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold">Configurações de Backup</h3>
                 <button
@@ -54,110 +64,66 @@ const ConfigPopup = ({
                 <label>Local de Backup:</label>
                 <input
                   type="text"
-                  value={tempBackupLocation}
-                  onChange={(e) => setTempBackupLocation(e.target.value)}
-                  placeholder="Caminho para salvar backups"
                   className="form-control"
+                  placeholder="Caminho para salvar backups automáticos"
+                  value={tempBackupLocation}
+                  onChange={e => setTempBackupLocation(e.target.value)}
                 />
-                <p className="form-helper">
-                  <small>Este será o local onde os backups serão salvos por padrão.</small>
-                </p>
+                <div className="form-helper">
+                  <small>Este caminho é usado apenas para backups automáticos. Para backups manuais, você poderá escolher onde salvar.</small>
+                </div>
               </div>
-
               <div className="form-group">
-                <label>
+                <label className="flex items-center">
                   <input
                     type="checkbox"
                     checked={tempAutoBackup}
-                    onChange={(e) => setTempAutoBackup(e.target.checked)}
+                    onChange={e => setTempAutoBackup(e.target.checked)}
                   />
-                  Criar backup automático após cada venda
+                  <span className="ml-2">Backup automático após cada venda</span>
                 </label>
               </div>
+            </details>
 
-              <div className="backup-actions">
-                <button
-                  className="btn-backup"
-                  onClick={async () => {
-                    try {
-                      // Criar backup usando o serviço aprimorado
-                      const backupContent = await createEnhancedBackup('js');
-                      // Salvar o backup
-                      const fileName = saveBackupFile(backupContent, 'js');
-                      toast({
-                        title: "Backup Criado",
-                        description: `Backup criado com sucesso e salvo como ${fileName}!`,
-                        variant: "success"
-                      });
-                    } catch (error) {
-                      console.error('Erro ao criar backup:', error);
-                      toast({
-                        title: "Erro",
-                        description: `Erro ao criar backup: ${error.message || 'Erro desconhecido'}`,
-                        variant: "destructive"
-                      });
-                    }
-                  }}
-                >
-                  Fazer Backup Agora
-                </button>
-
-                <button
-                  className="btn-restore"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  Restaurar Backup
-                </button>
-
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={async (e) => {
-                    try {
-                      const file = e.target.files[0];
-                      if (!file) return;
-
-                      // Restaurar o backup usando o serviço aprimorado
-                      await restoreBackup(file);
-                      toast({
-                        title: "Backup Restaurado",
-                        description: "Backup restaurado com sucesso!",
-                        variant: "success"
-                      });
-                      // Recarregar a página para aplicar as alterações
-                      window.location.reload();
-                    } catch (error) {
-                      console.error('Erro ao restaurar backup:', error);
-                      toast({
-                        title: "Erro",
-                        description: `Erro ao restaurar backup: ${error.message || 'Erro desconhecido'}`,
-                        variant: "destructive"
-                      });
-                    }
-                  }}
-                  accept=".zip"
-                  style={{ display: 'none' }}
-                />
+            <details style={{ marginBottom: '1rem', border: '1px solid #e5e7eb', borderRadius: 6, padding: 12, background: '#f9fafb' }}>
+              <summary style={{ fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Personalização</summary>
+              <div style={{ marginTop: 8 }}>
+                <div className="form-group">
+                  <label>Tema do Sistema:</label>
+                  <select className="form-control">
+                    <option value="green">Verde</option>
+                    <option value="blue">Azul</option>
+                    <option value="purple">Roxo</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Fonte:</label>
+                  <select className="form-control">
+                    <option value="Arial">Arial</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Inter">Inter</option>
+                  </select>
+                </div>
               </div>
+            </details>
 
-              <hr />
-
-              <h3>Outras Configurações</h3>
-              {/* Espaço para futuras configurações */}
-            </div>
-
-            <div className="form-actions">
+            <div className="form-actions" style={{display: 'flex', justifyContent: 'flex-end', gap: 8}}>
               <button
                 className="btn-cancel"
                 onClick={() => setShowConfigPopup(false)}
+                style={{padding: '8px 16px', borderRadius: 5, background: '#eee', border: 'none'}}
               >
                 Cancelar
               </button>
-              <button className="btn-save" onClick={handleSaveConfig}>
+              <button
+                className="btn-save"
+                onClick={handleSaveConfig}
+                style={{padding: '8px 16px', borderRadius: 5, background: '#1d4ed8', color: '#fff', border: 'none'}}
+              >
                 Salvar
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
