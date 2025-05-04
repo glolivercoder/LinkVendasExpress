@@ -14,7 +14,7 @@ const Header = ({ openSidebar, title }) => {
 
   return (
     <header className="bg-white dark:bg-dark-surface border-b border-light-border dark:border-dark-border shadow-sm dark:shadow-dark-sm">
-      <div className="flex items-center justify-between h-16 px-4">
+      <div className="flex items-center justify-between h-14 px-2 md:h-16 md:px-4">
         {/* Lado esquerdo: Botão do menu (visível apenas em dispositivos móveis) e botão de login */}
         <div className="flex items-center">
           <button

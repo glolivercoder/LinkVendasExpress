@@ -1,0 +1,140 @@
+/* Estilos específicos para melhorar a responsividade em dispositivos móveis */
+/* Otimizado para Samsung Galaxy M52 e dispositivos similares */
+
+/* Ajustes gerais para dispositivos móveis */
+@media (max-width: 768px) {
+  /* Reduzir padding e margens para economizar espaço */
+  .card, .section, .container, .form-section {
+    padding: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Aumentar área de toque para botões */
+  button, .btn, [role="button"] {
+    min-height: 42px;
+    min-width: 42px;
+  }
+  
+  /* Botões de ícone podem ser menores */
+  button[aria-label], .btn-icon {
+    min-height: 36px;
+    min-width: 36px;
+  }
+  
+  /* Melhorar espaçamento entre elementos de formulário */
+  .form-group {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Ajustar tamanho de inputs para melhor visualização */
+  input, select, textarea {
+    font-size: 16px !important; /* Evita zoom automático em iOS */
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  /* Melhorar visualização de tabelas em telas pequenas */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* Reduzir tamanho de cabeçalhos */
+  h1 {
+    font-size: 1.3rem !important;
+  }
+  
+  h2 {
+    font-size: 1.1rem !important;
+  }
+  
+  h3 {
+    font-size: 1rem !important;
+  }
+}
+
+/* Ajustes específicos para telas muito estreitas (Galaxy M52 em modo retrato) */
+@media (max-width: 480px) {
+  /* Reduzir ainda mais o padding para aproveitar o espaço */
+  .card, .section, .container, .form-section {
+    padding: 0.5rem !important;
+  }
+  
+  /* Ajustar layout de formulários para telas estreitas */
+  .form-row {
+    flex-direction: column !important;
+  }
+  
+  .form-group {
+    width: 100% !important;
+  }
+  
+  /* Melhorar visualização de botões em linha */
+  .btn-group, .action-buttons, .form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+  
+  /* Ajustar tamanho de ícones */
+  svg, .icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  /* Melhorar visualização de modais */
+  .modal-content {
+    width: 95% !important;
+    margin: 0 auto;
+    max-height: 90vh;
+  }
+  
+  /* Ajustar tamanho de texto para melhor legibilidade */
+  p, span, div, li {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Melhorar visualização da calculadora de frete */
+  .shipping-calculator .card-header {
+    padding: 0.5rem !important;
+  }
+  
+  .shipping-calculator .tab-header {
+    padding: 0 !important;
+  }
+  
+  .shipping-calculator .tab-button {
+    padding: 0.5rem !important;
+  }
+  
+  /* Ajustar espaçamento entre elementos na calculadora de frete */
+  .shipping-calculator .form-section {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .shipping-calculator .section-title {
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+/* Ajustes para o Samsung Galaxy M52 em modo paisagem */
+@media (min-width: 481px) and (max-width: 900px) and (orientation: landscape) {
+  /* Melhorar layout em modo paisagem */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  /* Ajustar altura de elementos para caber na tela em modo paisagem */
+  .card, .section, .container {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}

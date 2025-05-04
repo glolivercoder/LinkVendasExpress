@@ -1337,13 +1337,12 @@ input:checked + .toggle-slider:before {
 }
 
 /* Estilos para o modal da calculadora de frete */
-.shipping-calculator-modal {
-  width: 90%;
-  max-width: 1200px;
-  height: 90vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.shipping-calculator {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  padding: 0 8px;
 }
 
 .shipping-calculator-modal .modal-header {

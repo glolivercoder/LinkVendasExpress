@@ -20,11 +20,22 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   transition: all 0.3s ease;
+  /* Reduzir margens padrão para telas menores */
+  margin: 0;
+  padding: 0;
 }
 
+/* Ajustes específicos para Galaxy M52 e dispositivos similares */
 @media (max-width: 500px) {
   body {
     font-size: 13px;
+  }
+}
+
+/* Ajustes ainda mais específicos para telas muito estreitas */
+@media (max-width: 360px) {
+  body {
+    font-size: 12px;
   }
 }
 
@@ -75,22 +86,32 @@ p, span, div, li, a, button, input, select, textarea {
   cursor: pointer;
   border: none;
   outline: none;
+  /* Garantir tamanho mínimo para botões tocáveis */
+  min-height: 36px;
+  min-width: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Ajustes para Galaxy M52 e dispositivos similares */
 @media (max-width: 500px) {
   .btn, button {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
+    /* Garantir área de toque adequada para dispositivos móveis */
+    min-height: 40px;
+    min-width: 40px;
+    /* Reduzir margem entre botões */
+    margin: 0.2rem;
   }
-}
-
-
-@media (max-width: 500px) {
-  .btn, button {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.7rem;
-    border-radius: 5px;
+  
+  /* Botões de ícone podem ser menores */
+  .btn-icon, button.btn-icon, button[aria-label] {
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0.25rem;
   }
 }
 
@@ -168,31 +189,25 @@ p, span, div, li, a, button, input, select, textarea {
   text-shadow: 0 1px 2px #000b;
   letter-spacing: 0.2px;
   min-height: 32px;
+  /* Garantir que o texto não transborde */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-@media (max-width: 500px) {
-  .category-item {
-    font-size: 0.75rem;
-    padding: 0.12rem 0.22rem;
-    border-radius: 3px;
-    min-height: 26px;
-  }
-}
-
+/* Ajustes para Galaxy M52 e dispositivos similares */
 @media (max-width: 500px) {
   .category-item {
     font-size: 0.8rem;
-    padding: 0.15rem 0.3rem;
-    border-radius: 3px;
-  }
-}
-
-
-@media (max-width: 500px) {
-  .category-item {
-    font-size: 0.95rem;
-    padding: 0.35rem 0.5rem;
-    border-radius: 5px;
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    min-height: 38px; /* Aumentar área de toque */
+    /* Reduzir margem entre itens */
+    margin-bottom: 0.2rem;
+    /* Melhorar visualização em telas menores */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

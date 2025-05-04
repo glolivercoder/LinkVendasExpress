@@ -5,6 +5,7 @@ import './styles/global.css';
 import './styles/shipping.css';
 import './styles/ImageSourceSelector.css';
 import './styles/themes.css';
+import './styles/mobile-responsive.css'; // Estilos específicos para melhorar responsividade em dispositivos móveis
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { AppContextProvider } from './context/AppContext';
