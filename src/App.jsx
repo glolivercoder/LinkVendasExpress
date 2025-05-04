@@ -3010,10 +3010,10 @@ ${clientCPF}
                             <button
                               type="button"
                               onClick={() => setShowNewCategoryInput(true)}
-                              className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                              className="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-full hover:bg-blue-600 shadow-sm"
                               title="Adicionar nova categoria"
                             >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 01-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
                               </svg>
                             </button>
@@ -4822,10 +4822,10 @@ ${clientCPF}
                       <button
                         type="button"
                         onClick={() => setShowNewCategoryInput(true)}
-                        className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        className="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-full hover:bg-blue-600 shadow-sm"
                         title="Adicionar nova categoria"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 01-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
                         </svg>
                       </button>
