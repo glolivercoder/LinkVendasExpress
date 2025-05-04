@@ -141,7 +141,7 @@ const EnhancedBackupConfig = ({ onClose }) => {
 
   return (
     <div className="backup-config-container configuracoes-scrollable">
-      <h2 className="text-2xl font-bold mb-4">Configurações de Backup</h2>
+      <h2 className="text-lg font-bold mb-4">Configurações de Backup</h2>
 
       {/* Formato do backup */}
       <div className="mb-6">

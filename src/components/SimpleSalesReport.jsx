@@ -16,7 +16,7 @@ const SimpleSalesReport = ({
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-auto py-10">
         <div className="bg-white p-6 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Relatório de Vendas</h2>
+            <h2 className="text-lg font-bold">Relatório de Vendas</h2>
             <button
               onClick={() => setShowSimpleSalesReport(false)}
               className="p-1 hover:bg-gray-200 rounded-full"

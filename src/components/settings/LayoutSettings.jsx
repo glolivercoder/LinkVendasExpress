@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import FontAndButtonSettingsDropdown from './FontAndButtonSettingsDropdown';
 
-const LayoutSettings = () => {
+const LayoutSettings = ({ isOpen, onClose }) => {
   // Estado para armazenar as configurações de layout
   const [layoutConfig, setLayoutConfig] = useLocalStorage('layoutConfig', {
     logoAlignment: 'left',
@@ -146,8 +146,122 @@ const LayoutSettings = () => {
     alert('Configurações resetadas para o padrão!');
   };
 
+  // Função para aplicar as configurações em tempo real (sem reload)
+  const applySettingsLive = () => {
+    try {
+      // Aplicar as configurações ao CSS da aplicação
+      document.documentElement.style.setProperty('--header-background', layoutConfig.headerColor);
+      document.documentElement.style.setProperty('--primary-color', layoutConfig.buttonColor);
+      document.documentElement.style.setProperty('--button-text', layoutConfig.buttonTextColor);
+      document.documentElement.style.setProperty('--text-color', layoutConfig.textColor);
+      
+      // Fontes globais
+      document.documentElement.style.setProperty('--app-font-family', fontConfig.family);
+      document.documentElement.style.setProperty('--app-font-size', fontConfig.size + 'px');
+      document.documentElement.style.setProperty('--app-font-color', fontConfig.color);
+      
+      // Aplicar configurações específicas para cada categoria de fonte
+      Object.entries(fontConfig).forEach(([key, value]) => {
+        if (typeof value === 'object') {
+          document.documentElement.style.setProperty(`--font-${key}-family`, value.family || 'inherit');
+          document.documentElement.style.setProperty(`--font-${key}-size`, (value.size || 16) + 'px');
+          document.documentElement.style.setProperty(`--font-${key}-color`, value.color || 'inherit');
+          
+          // Aplicar diretamente aos elementos correspondentes
+          if (key === 'h1') {
+            document.querySelectorAll('h1').forEach(el => {
+              el.style.fontFamily = value.family || 'inherit';
+              el.style.fontSize = (value.size || 28) + 'px';
+              el.style.color = value.color || 'inherit';
+            });
+          } else if (key === 'h2') {
+            document.querySelectorAll('h2').forEach(el => {
+              el.style.fontFamily = value.family || 'inherit';
+              el.style.fontSize = (value.size || 22) + 'px';
+              el.style.color = value.color || 'inherit';
+            });
+          } else if (key === 'h3') {
+            document.querySelectorAll('h3').forEach(el => {
+              el.style.fontFamily = value.family || 'inherit';
+              el.style.fontSize = (value.size || 18) + 'px';
+              el.style.color = value.color || 'inherit';
+            });
+          } else if (key === 'body') {
+            document.body.style.fontFamily = value.family || 'inherit';
+            document.body.style.fontSize = (value.size || 15) + 'px';
+            document.body.style.color = value.color || 'inherit';
+          }
+        }
+      });
+      
+      // Botões globais
+      Object.entries(buttonConfig).forEach(([key, val]) => {
+        document.documentElement.style.setProperty(`--btn-${key}-color`, val.color);
+        document.documentElement.style.setProperty(`--btn-${key}-font-size`, val.fontSize + 'px');
+        
+        // Aplicar diretamente aos botões correspondentes
+        const buttonSelector = key === 'primary' ? '.bg-blue-500' : 
+                              key === 'secondary' ? '.bg-gray-500' :
+                              key === 'success' ? '.bg-green-500' :
+                              key === 'warning' ? '.bg-yellow-500' :
+                              key === 'danger' ? '.bg-red-500' : '';
+        
+        if (buttonSelector) {
+          document.querySelectorAll(buttonSelector).forEach(btn => {
+            btn.style.backgroundColor = val.color;
+            btn.style.fontSize = val.fontSize + 'px';
+          });
+        }
+      });
+
+      // Aplicar altura do cabeçalho
+      const header = document.querySelector('div[class*="bg-[#2c3e50]"]');
+      if (header) {
+        header.style.height = `${layoutConfig.headerHeight}px`;
+      }
+
+      // Aplicar alinhamento e tamanho da logo
+      const logoContainer = document.querySelector('.logo-container');
+      if (logoContainer) {
+        logoContainer.style.justifyContent = layoutConfig.logoAlignment === 'center' ? 'center' : 'flex-start';
+        logoContainer.style.width = '50%';
+      }
+
+      const logoImg = document.querySelector('.logo-container img');
+      if (logoImg) {
+        logoImg.style.height = `${layoutConfig.logoHeight}px`;
+      }
+      
+      console.log('Configurações aplicadas em tempo real');
+    } catch (error) {
+      console.error('Erro ao aplicar configurações em tempo real:', error);
+    }
+  };
+  
+  // Aplicar configurações em tempo real quando qualquer configuração mudar
+  useEffect(() => {
+    applySettingsLive();
+  }, [layoutConfig, fontConfig, buttonConfig]);
+
+  // Se o popup não estiver aberto, não renderizar nada
+  if (!isOpen) return null;
+
   return (
-    <div className="p-3 bg-white rounded-lg shadow configuracoes-scrollable text-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-4">
+        <div className="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 pb-2 border-b">
+          <h1 className="text-lg font-bold">Configurações de Layout</h1>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="p-3 bg-white rounded-lg configuracoes-scrollable text-sm">
       {/* Dropdowns para fontes e botões */}
       <div className="mb-4">
         <FontAndButtonSettingsDropdown
@@ -348,12 +462,20 @@ const LayoutSettings = () => {
           Resetar
         </button>
         <button
+          onClick={applySettingsLive}
+          className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600"
+        >
+          Aplicar em Tempo Real
+        </button>
+        <button
           onClick={applySettings}
           className="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
         >
-          Aplicar
+          Aplicar e Salvar
         </button>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

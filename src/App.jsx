@@ -236,6 +236,7 @@ function AppContent() {
   const [showEmployeeSection, setShowEmployeeSection] = useState(false);
   const [showMaintenanceSection, setShowMaintenanceSection] = useState(false);
   const [showLayoutSection, setShowLayoutSection] = useState(false);
+  const [showLayoutPopup, setShowLayoutPopup] = useState(false);
 
   // Adicionar estado para categorias e nova categoria
   const [categories, setCategories] = useState(['Ferramentas', 'Instrumentos Musicais', 'Informática', 'Gadgets', 'Todos', 'Diversos']);
@@ -2653,9 +2654,13 @@ ${clientCPF}
               {/* Botão de configurações */}
               <button
                 onClick={() => setShowConfigPopup(true)}
-                className="px-3 py-1.5 text-white hover:text-linkvendas-orange rounded-md transition-colors"
+                className="p-2 text-white hover:text-linkvendas-orange rounded-md transition-colors"
+                title="Configurações"
               >
-                CONFIGURAÇÕES
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </button>
             </div>
           </div>
@@ -2666,7 +2671,7 @@ ${clientCPF}
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-4">
-                  <h2 className="text-2xl font-semibold">Adicionar Novo Item</h2>
+                  <h2 className="text-lg font-semibold">Adicionar Novo Item</h2>
                   {/* Magic Capture Button */}
                   {showAddItem && (
                     <MagicCaptureButton
@@ -3105,7 +3110,7 @@ ${clientCPF}
 
             {/* Items List */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold mb-4">Vendas PDV</h2>
+              <h2 className="text-lg font-semibold mb-4">Vendas PDV</h2>
 
               {/* Barra de busca centralizada */}
               <SearchBar
@@ -3591,7 +3596,7 @@ ${clientCPF}
               <div className="bg-white p-6 rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
                 <div className="p-4">
                   <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold">{selectedClient ? 'Editar Cliente' : 'Novo Cliente'}</h2>
+                    <h2 className="text-base font-bold">{selectedClient ? 'Editar Cliente' : 'Novo Cliente'}</h2>
                     <MagicWandButton
                       onDataExtracted={(data) => {
                         // Garantir que as datas estejam no formato correto
@@ -3871,7 +3876,7 @@ ${clientCPF}
       {showPaymentPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
-            <h3 className="text-xl font-semibold mb-4">Escolha a forma de pagamento</h3>
+            <h2 className="text-lg font-bold mb-4">Escolha a forma de pagamento</h2>
             <div className="space-y-3">
               <button
                 onClick={() => handleMultipleSales('dinheiro')}
@@ -3907,9 +3912,9 @@ ${clientCPF}
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white p-6 rounded-lg max-w-6xl w-full h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">
+              <h2 className="text-lg font-bold">
                 Relatório de Vendas
-              </h3>
+              </h2>
               <div className="flex items-center gap-4">
                 {/* Botão de Dashboard */}
                 <button
@@ -4069,7 +4074,7 @@ ${clientCPF}
                   {/* Valor Total das Compras do Item Selecionado */}
                   {selectedItems.length === 1 && items[selectedItems[0]] && (
                     <div className="bg-white p-6 rounded-lg shadow-lg mb-4">
-                      <h4 className="text-lg font-medium mb-2">Valor Total das Compras do Item Selecionado</h4>
+                      <h2 className="text-lg font-bold mb-2">Valor Total das Compras do Item Selecionado</h2>
                       <div className="flex justify-between items-center">
                         <div>
                           <p className="text-gray-600">Item: {items[selectedItems[0]]?.description || 'Item não encontrado'}</p>
@@ -4092,7 +4097,7 @@ ${clientCPF}
                             />
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                               </svg>
                             </div>
                           </div>
@@ -4139,7 +4144,7 @@ ${clientCPF}
                       {/* Cliente selecionado */}
                       {selectedClient && (
                         <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                          <h5 className="font-medium text-blue-800">Cliente Selecionado</h5>
+                          <h2 className="font-bold text-blue-800">Cliente Selecionado</h2>
                           <p className="text-blue-700">{selectedClient.name} - {selectedClient.document || selectedClient.cpf}</p>
                         </div>
                       )}
@@ -4148,7 +4153,7 @@ ${clientCPF}
 
                   {/* Tabela de Vendas */}
                   <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h4 className="text-lg font-medium mb-4">Vendas no Período</h4>
+                    <h2 className="text-lg font-bold mb-4">Vendas no Período</h2>
                     <div className="overflow-x-auto">
                       <table className="min-w-full bg-white border border-gray-200">
                         <thead>
@@ -4310,26 +4315,26 @@ ${clientCPF}
                   {/* Sales Summary */}
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="bg-green-100 p-4 rounded-lg">
-                      <h4 className="font-medium text-green-800">Total em Dinheiro</h4>
-                      <p className="text-2xl font-bold text-green-600">
+                      <h2 className="font-bold text-green-800">Total em Dinheiro</h2>
+                      <p className="text-lg font-bold text-green-600">
                         R$ {salesSummary.totalCash.toFixed(2)}
                       </p>
                     </div>
                     <div className="bg-blue-100 p-4 rounded-lg">
-                      <h4 className="font-medium text-blue-800">Total em Cartão</h4>
-                      <p className="text-2xl font-bold text-blue-600">
+                      <h2 className="font-bold text-blue-800">Total em Cartão</h2>
+                      <p className="text-lg font-bold text-blue-600">
                         R$ {salesSummary.totalCard.toFixed(2)}
                       </p>
                     </div>
                     <div className="bg-purple-100 p-4 rounded-lg">
-                      <h4 className="font-medium text-purple-800">Total em PIX</h4>
-                      <p className="text-2xl font-bold text-purple-600">
+                      <h2 className="font-bold text-purple-800">Total em PIX</h2>
+                      <p className="text-lg font-bold text-purple-600">
                         R$ {salesSummary.totalPix.toFixed(2)}
                       </p>
                     </div>
                     <div className="bg-yellow-100 p-4 rounded-lg">
-                      <h4 className="font-medium text-yellow-800">Total Geral</h4>
-                      <p className="text-2xl font-bold text-yellow-600">
+                      <h2 className="font-bold text-yellow-800">Total Geral</h2>
+                      <p className="text-lg font-bold text-yellow-600">
                         R$ {(salesSummary.totalCash + salesSummary.totalCard + salesSummary.totalPix).toFixed(2)}
                       </p>
                     </div>
@@ -4339,7 +4344,7 @@ ${clientCPF}
                   {showDashboard && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white p-4 rounded-lg shadow">
-                        <h4 className="font-medium mb-4">Produtos Mais Vendidos</h4>
+                        <h2 className="font-bold mb-4">Produtos Mais Vendidos</h2>
                         <div className="h-64">
                           {isLoadingDashboard ? (
                             <div className="flex h-full items-center justify-center">
@@ -4351,7 +4356,7 @@ ${clientCPF}
                         </div>
                       </div>
                       <div className="bg-white p-4 rounded-lg shadow">
-                        <h4 className="font-medium mb-4">Vendas por Mês</h4>
+                        <h2 className="font-bold mb-4">Vendas por Mês</h2>
                         <div className="h-64">
                           {isLoadingDashboard ? (
                             <div className="flex h-full items-center justify-center">
@@ -4468,7 +4473,7 @@ ${clientCPF}
               <div className="flex items-center gap-4">
                 <label className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v9a2 2 0 002 2h11a2 2 0 002-2V6a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                   </svg>
                   Alterar QR Code
                   <input
@@ -4495,7 +4500,7 @@ ${clientCPF}
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">Editar Produto</h3>
+              <h2 className="text-lg font-bold">Editar Produto</h2>
               <button
                 onClick={() => setShowEditPopup(false)}
                 className="text-gray-500 hover:text-gray-700"
@@ -4569,7 +4574,7 @@ ${clientCPF}
 
                   <label className="cursor-pointer bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6a2 2 0 002 2v10a2 2 0 002 2H18a2 2 0 002-2V8a2 2 0 002-2h-2m0-2H8a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     Adicionar Mídia
                     <input
@@ -4602,7 +4607,7 @@ ${clientCPF}
                 {/* Miniaturas das imagens e vídeos adicionais */}
                 {editingItem.additionalImages && editingItem.additionalImages.length > 0 && (
                   <div className="mt-2">
-                    <h4 className="text-sm font-medium mb-2">Mídias Adicionais</h4>
+                    <h2 className="text-lg font-bold mb-2">Mídias Adicionais</h2>
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
                       {editingItem.additionalImages.map((media, index) => {
                         const isVideo = editingItem.additionalMediaTypes &&
@@ -4618,7 +4623,7 @@ ${clientCPF}
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white bg-black bg-opacity-50 rounded-full p-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                                 </div>
@@ -4866,7 +4871,7 @@ ${clientCPF}
 
                 {showLinks && (
                   <div className="mt-2 border p-3 rounded-md">
-                    <h4 className="font-medium mb-2">URLs Cadastradas</h4>
+                    <h2 className="font-bold mb-2">URLs Cadastradas</h2>
                     <div className="space-y-2 max-h-40 overflow-y-auto mb-2">
                       {editingItem.links && editingItem.links.length > 0 ? (
                         editingItem.links.map((link, index) => (
@@ -4960,7 +4965,7 @@ ${clientCPF}
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Configurações</h2>
+              <h2 className="text-base font-semibold">Configurações</h2>
               <button
                 onClick={() => setShowConfigPopup(false)}
                 className="text-gray-500 hover:text-gray-700"
@@ -5151,16 +5156,21 @@ ${clientCPF}
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center cursor-pointer" onClick={() => setShowLayoutSection(!showLayoutSection)}>
+                <div className="flex justify-between items-center cursor-pointer">
                   <h3 className="text-md font-medium mb-2 mt-4">Layout</h3>
-                  <svg className={`h-5 w-5 transform ${showLayoutSection ? 'rotate-180' : ''} transition-transform duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <button 
+                    onClick={() => setShowLayoutPopup(true)}
+                    className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                  >
+                    Configurar Layout
+                  </button>
                 </div>
-                {showLayoutSection && (
-                  <div className="mb-4">
-                    <LayoutSettings />
-                  </div>
+                {/* Renderizar o popup de configurações de layout */}
+                {showLayoutPopup && (
+                  <LayoutSettings 
+                    isOpen={showLayoutPopup} 
+                    onClose={() => setShowLayoutPopup(false)} 
+                  />
                 )}
 
                 <div className="flex justify-between items-center cursor-pointer" onClick={() => setShowMaintenanceSection(!showMaintenanceSection)}>

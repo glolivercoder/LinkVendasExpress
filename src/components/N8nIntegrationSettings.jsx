@@ -136,7 +136,7 @@ const N8nIntegrationSettings = ({ onClose }) => {
   // Renderizar componente
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Configurações de Integração n8n</h2>
+      <h2 className="text-lg font-bold mb-4 text-gray-800">Configurações de Integração n8n</h2>
 
       {/* Informações de conexão */}
       <div className="mb-6 p-4 bg-gray-50 rounded-md">

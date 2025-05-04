@@ -70,15 +70,27 @@ export default function FontAndButtonSettingsDropdown({
                 ))}
               </select>
               <label className="text-xs font-medium">Tamanho</label>
-              <input
-                type="number"
-                min={10}
-                max={48}
-                value={fontConfig[cat.key]?.size || cat.defaultSize}
-                onChange={e => updateFont(cat.key, 'size', e.target.value)}
-                className="w-16 border rounded min-h-[30px] min-w-[30px] p-1"
-              />
-              <span className="text-xs">px</span>
+              <div className="flex items-center gap-1">
+                <input
+                  type="number"
+                  min={0.5}
+                  max={100}
+                  step={0.1}
+                  value={fontConfig[cat.key]?.size || cat.defaultSize}
+                  onChange={e => updateFont(cat.key, 'size', parseFloat(e.target.value))}
+                  className="w-16 border rounded min-h-[30px] min-w-[30px] p-1"
+                />
+                <span className="text-xs">px</span>
+                <input
+                  type="range"
+                  min={0.5}
+                  max={50}
+                  step={0.1}
+                  value={fontConfig[cat.key]?.size || cat.defaultSize}
+                  onChange={e => updateFont(cat.key, 'size', parseFloat(e.target.value))}
+                  className="w-24 h-[30px]"
+                />
+              </div>
               <label className="text-xs font-medium">Cor</label>
               <input
                 type="color"
@@ -113,11 +125,21 @@ export default function FontAndButtonSettingsDropdown({
                 />
                 <input
                   type="number"
-                  min={10}
-                  max={32}
+                  min={0.5}
+                  max={50}
+                  step={0.1}
                   value={buttonConfig[btn.key]?.fontSize || 14}
-                  onChange={e => setButtonConfig({ ...buttonConfig, [btn.key]: { ...buttonConfig[btn.key], fontSize: e.target.value } })}
+                  onChange={e => setButtonConfig({ ...buttonConfig, [btn.key]: { ...buttonConfig[btn.key], fontSize: parseFloat(e.target.value) } })}
                   className="w-16 border rounded min-h-[30px] min-w-[30px] p-1"
+                />
+                <input
+                  type="range"
+                  min={0.5}
+                  max={50}
+                  step={0.1}
+                  value={buttonConfig[btn.key]?.fontSize || 14}
+                  onChange={e => setButtonConfig({ ...buttonConfig, [btn.key]: { ...buttonConfig[btn.key], fontSize: parseFloat(e.target.value) } })}
+                  className="w-24 h-[30px]"
                 />
                 <span className="text-xs">px</span>
               </div>
